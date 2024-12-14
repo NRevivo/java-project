@@ -7,6 +7,7 @@ public class Topic {
     public final String name;
     private final List<Agent> subs = new CopyOnWriteArrayList<>();
     private final List<Agent> pubs = new CopyOnWriteArrayList<>();
+    private Message lastMessage;
 
     public Topic(String name) {
         if (name == null || name.isEmpty()) {
@@ -26,6 +27,7 @@ public class Topic {
     }
 
     public void publish(Message message) {
+        lastMessage = message;
         for (Agent agent : subs) {
             agent.callback(this.name, message);
         }
@@ -39,5 +41,13 @@ public class Topic {
     public void removePublisher(Agent a){
         pubs.remove(a);
     }
-
+    public Message getMsg() {
+        return lastMessage;
+    }
+    public List<Agent> getSubs() {
+        return subs;
+    }
+    public List<Agent> getPubs() {
+        return pubs;
+    }
 }
