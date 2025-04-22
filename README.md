@@ -1,4 +1,4 @@
-# Even Derch Project
+# Java Project
 
 A distributed system simulation using agent-based graphs — an advanced practice in algorithmics, concurrency, and modular software design.
 
